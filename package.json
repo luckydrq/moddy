@@ -1,0 +1,29 @@
+{
+  "name": "moddy",
+  "version": "0.1.0",
+  "keywords": [
+    "module loader",
+    "search",
+    "recursive"
+  ],
+  "author": "luckydrq",
+  "email": "drqzju@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:luckydrq/moddy.git"
+  },
+  "scripts": {
+    "test": "mocha test/*.test.js"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-babel": "~5.1.0",
+    "mocha": "~2.2.5"
+  },
+  "dependencies": {
+    "bluebird": "~2.9.30",
+    "debug": "~2.2.0",
+    "lodash": "~3.9.3",
+    "native-or-bluebird": "~1.2.0"
+  }
+}
