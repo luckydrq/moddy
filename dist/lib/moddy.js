@@ -26,6 +26,8 @@ var _fs = require('fs');
 
 var _path = require('path');
 
+var _nodePathExtras = require('node-path-extras');
+
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
@@ -58,9 +60,9 @@ function Moddy(options, callback) {
   if (typeof searchPaths === 'string') {
     searchPaths = [searchPaths];
   }
-  searchPaths = searchPaths.map(function (p) {
+  searchPaths = (0, _nodePathExtras.unique)(searchPaths.map(function (p) {
     return (0, _path.resolve)(p);
-  }).filter(_util.isDir);
+  }).filter(_util.isDir));
 
   if (searchPaths.length === 0) {
     throw new Error('invalid searchPaths');

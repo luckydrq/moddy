@@ -62,4 +62,21 @@ describe('moddy test', function() {
       done();
     });
   });
+
+  it('should avoid duplicate path in searchPaths', function(done) {
+    var opt = {
+      searchPaths: ['./test/node_modules', './test/node_modules/express', './test/app/modules']
+    };
+
+    Moddy(opt, function(err, mods) {
+      if (err) return done(err);
+
+      assert(mods.length === 3);
+      mods.forEach(function(m) {
+        assert(m.parent == null);
+        assert(['express', 'koa', 'modA'].indexOf(m.name) !== -1);
+      });
+      done();
+    });
+  });
 });
