@@ -173,6 +173,18 @@ var Module = (function (_EE) {
 
       return true;
     }
+  }, {
+    key: 'toJSON',
+    value: function toJSON() {
+      return {
+        name: this.name,
+        version: this.version,
+        path: this.path,
+        deps: this.deps,
+        rules: this.rules,
+        loaded: this.loaded
+      };
+    }
   }]);
 
   return Module;
