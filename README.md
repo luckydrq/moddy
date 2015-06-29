@@ -47,7 +47,7 @@ optional
 
 - options.rules
 
-{Object} Each `key-value` pair specifies certain field of `package.json` that represented by `key` to match rule that represented by `value`. e.g. `{ name: 'koa' }` means only module with a name `koa` should be seleted which as we all know it is [koa](https://github.com/koajs/koa) and `{ name: /^koa-.*/ }` means that all the modules that have a name prefixed with `koa-` should be seleted. So `value` in rules can be a `String` or a `RegExp`.
+{Object} Each `key-value` pair specifies certain field of `package.json` that represented by `key` to match rule that represented by `value`. e.g. `{ name: 'koa' }` means only module with a name `koa` should be selected which as we all know it is [koa](https://github.com/koajs/koa) and `{ name: /^koa-.*/ }` means that all the modules that have a name prefixed with `koa-` should be selected. So `value` in rules can be a `String` or a `RegExp`.
 
 ### `callback`
 
