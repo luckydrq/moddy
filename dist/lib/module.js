@@ -160,14 +160,12 @@ var Module = (function (_EE) {
       for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
         var rule = this.rules[key];
-        if (typeof rule === 'string') {
-          if (rule !== this[key]) {
-            return false;
-          }
-        } else if (rule instanceof RegExp) {
-          if (!rule.test(this[key])) {
-            return false;
-          }
+        if (rule instanceof RegExp) {
+          return rule.test(this[key]);
+        } else if (typeof rule === 'function') {
+          return rule(this[key]);
+        } else {
+          return rule === this[key];
         }
       }
 

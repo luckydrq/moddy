@@ -47,10 +47,14 @@ optional
 
 - options.rules
 
-{Object} Each `key-value` pair specifies certain field of `package.json` that represented by `key` to match rule that represented by `value`. e.g. `{ name: 'koa' }` means only module with a name `koa` should be selected which as we all know it is [koa](https://github.com/koajs/koa) and `{ name: /^koa-.*/ }` means that all the modules that have a name prefixed with `koa-` should be selected. So `value` in rules can be a `String` or a `RegExp`.
+{Object} Each `key-value` pair stands for a certain rule for field validation of module's `package.json`. e.g. `{ name: 'koa' }` matches module with a name `koa` which as we all know and `{ name: /^koa-.*/ }` matches all the modules that have a name prefixed with `koa-` and `{ name: function(val) { return val !== 'koa'} }` matches any module whose name is not `koa`(in this case, param `val` is the value of that field in `package.json`). So `value` can be `RegExp`, `function` or any primative value.
 
 ### `callback`
 
 node-style callback that takes in two params: `err`, `mods`.
 
 `mods` is a collection of modules. Each module includes all the fields of its `package.json` and with extra `path`, `deps` fields.`path` is the absolute path of the module and `deps` is a collection of modules that it depends on.
+
+# LISENCE
+
+MIT
