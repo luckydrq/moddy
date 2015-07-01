@@ -1,5 +1,7 @@
 # moddy
-search node modules gracefully
+a elegant way for searching modules(not just node module)
+
+Conceptly, `module` and `package` are the same thing.
 
 # Install
 `$ npm install moddy`
@@ -48,6 +50,20 @@ optional
 - options.rules
 
 {Object} Each `key-value` pair stands for a certain rule for field validation of module's `package.json`. e.g. `{ name: 'koa' }` matches module with a name `koa` which as we all know and `{ name: /^koa-.*/ }` matches all the modules that have a name prefixed with `koa-` and `{ name: function(val) { return val !== 'koa'} }` matches any module whose name is not `koa`(in this case, param `val` is the value of that field in `package.json`). So `value` can be `RegExp`, `function` or any primative value.
+
+- options.packageDir
+
+{String} Directory that modules locate. Default to
+`node_modules`. If you want to search bower components, set it to
+`bower_components`.
+
+- options.packageFile
+
+{String} Package file. Defaults to `package.json`.
+
+- options.scopeDir
+
+{String} Scope of module. A module's name may be prefixed with a scope name. e.g. a module named with `xxx/yy` has scope `xxx` and it locates at `node_modules/xxx/yy` when installed. Defaults to ''.
 
 ### `callback`
 
