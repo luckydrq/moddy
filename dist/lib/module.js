@@ -59,12 +59,7 @@ var Module = (function (_EE) {
 
     _get(Object.getPrototypeOf(Module.prototype), 'constructor', this).call(this);
 
-    options = options || {
-      parent: null,
-      path: process.cwd()
-    };
     (0, _assert2['default'])(options.path, 'module path required');
-
     if (options.rules) {
       (0, _assert2['default'])(typeof options.rules, 'rules should be object');
     }
@@ -90,7 +85,8 @@ var Module = (function (_EE) {
       var _this2 = this;
 
       try {
-        var pkg = require((0, _path.join)(this.path, 'package.json'));
+        var packageFile = this.options.packageFile;
+        var pkg = require((0, _path.join)(this.path, packageFile));
         _lodash2['default'].defaults(this, pkg);
         if (!this.name) {
           this.name = (0, _path.basename)(this.path);
@@ -107,16 +103,30 @@ var Module = (function (_EE) {
 
       var defer = _nativeOrBluebird2['default'].defer();
       var subPromises = [];
-      var npath = (0, _path.join)(this.path, 'node_modules');
+      var packageDir = this.options.packageDir;
+      var packagePath = (0, _path.join)(this.path, packageDir);
 
-      (0, _fs.exists)(npath, function (yes) {
+      (0, _fs.exists)(packagePath, function (yes) {
         if (yes) {
-          (0, _fs.readdir)(npath, function (err, files) {
+          (0, _fs.readdir)(packagePath, function (err, files) {
             if (err) return defer.reject(err);
 
+            // 处理scope目录
+            var scopeDir = _this2.options.scopeDir;
+            if (scopeDir) {
+              var scopePath = (0, _path.join)(packagePath, scopeDir);
+              if ((0, _fs.existsSync)(scopePath) && (0, _util.isDir)(scopePath)) {
+                files = files.concat((0, _fs.readdirSync)(scopePath).map(function (file) {
+                  return scopeDir + '/' + file;
+                }));
+              }
+            }
+
             files = files.map(function (file) {
-              return (0, _path.join)(npath, file);
-            }).filter(_util.isNodeModule);
+              return (0, _path.join)(packagePath, file);
+            }).filter(function (file) {
+              return (0, _util.isModule)(file, packageFile);
+            });
 
             var count = 0;
             files.forEach(function (fpath) {

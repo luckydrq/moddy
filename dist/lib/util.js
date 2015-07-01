@@ -10,7 +10,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-exports.isNodeModule = isNodeModule;
+exports.isModule = isModule;
 exports.isDir = isDir;
 /**
  * Module dependencies.
@@ -20,8 +20,8 @@ var _path = require('path');
 
 var _fs = require('fs');
 
-function isNodeModule(dir) {
-  var pkgPath = (0, _path.join)(dir, 'package.json');
+function isModule(dir, pkgFile) {
+  var pkgPath = (0, _path.join)(dir, pkgFile);
   return (0, _fs.statSync)(dir).isDirectory() && (0, _fs.existsSync)(pkgPath);
 }
 

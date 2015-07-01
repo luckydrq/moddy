@@ -80,14 +80,28 @@ function Moddy(options, callback) {
     (0, _assert2['default'])(typeof rules === 'object', 'rules should be object');
   }
 
+  // 包安装目录
+  var packageDir = options.packageDir || 'node_modules';
+
+  // 包描述文件名
+  var packageFile = options.packageFile || 'package.json';
+
+  // 对于带scope的包名，多了一级scope目录
+  var scopeDir = options.scopeDir;
+
   var promises = [];
   searchPaths.forEach(function (spath) {
-    var npath = (0, _fs.readdirSync)(spath).map(function (p) {
+    (0, _fs.readdirSync)(spath).map(function (p) {
       return (0, _path.join)(spath, p);
-    }).filter(_util.isNodeModule).forEach(function (mpath) {
+    }).filter(function (p) {
+      return (0, _util.isModule)(p, packageFile);
+    }).forEach(function (p) {
       var mod = new _module3['default']({
-        path: mpath,
-        rules: rules
+        path: p,
+        rules: rules,
+        packageDir: packageDir,
+        packageFile: packageFile,
+        scopeDir: scopeDir
       });
       promises.push(mod.load());
     });
