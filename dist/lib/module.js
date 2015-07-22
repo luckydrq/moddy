@@ -127,6 +127,9 @@ var Module = (function (_EE) {
             }).filter(function (file) {
               return (0, _util.isModule)(file, packageFile);
             });
+            if (files.length === 0) {
+              return defer.resolve(_this2);
+            }
 
             var count = 0;
             files.forEach(function (fpath) {
