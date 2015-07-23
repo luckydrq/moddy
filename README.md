@@ -3,8 +3,7 @@ An util tool for searching modules(not just node module)
 
 Conceptly, `module` and `package` are the same thing.
 
-*Notice: If all of the sub directories cannot be found as a
-module, it will stop searching in that path*
+*Notice: If any module cannot be found in all the sub directories, it will stop searching in that path*
 
 # Install
 `$ npm install moddy`
