@@ -22,7 +22,7 @@
     "mocha": "~2.2.5"
   },
   "dependencies": {
-    "bluebird": "~2.9.30",
+    "bluebird": "~3.1.4",
     "debug": "~2.2.0",
     "lodash": "~3.9.3",
     "native-or-bluebird": "~1.2.0",
