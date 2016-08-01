@@ -19,7 +19,7 @@
   "devDependencies": {
     "gulp": "~3.9.0",
     "gulp-babel": "~6.1.2",
-    "mocha": "~2.5.1"
+    "mocha": "~3.0.0"
   },
   "dependencies": {
     "bluebird": "~3.4.1",
